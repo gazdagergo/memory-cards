@@ -73,9 +73,9 @@ export default function Home() {
       <Container size={1100}>
         <Group>
           {Array(8).fill('a').map((_, i) => (
-            <FlipCard visible={i}>
-              <div class="flip-card-inner">
-                <div class="flip-card-front">
+            <FlipCard key={i} visible={i}>
+              <div className="flip-card-inner">
+                <div className="flip-card-front">
                 <Image
                   src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
                   width={160}
@@ -83,7 +83,7 @@ export default function Home() {
                   alt="Norway"
                 />
                 </div>
-                <div class="flip-card-back" />
+                <div className="flip-card-back" />
               </div>
             </FlipCard>            
           ))}
