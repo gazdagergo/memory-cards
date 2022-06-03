@@ -11,6 +11,7 @@ import {
   Container,
   Card,
   Group,
+  Grid,
   useMantineTheme,
   Text,
   ActionIcon,
@@ -36,36 +37,11 @@ export default function Home() {
       })}
     >
       <Container size={1100}>
-        <Group>
-        <Card radius="xl" shadow="sm" p="lg">
-          <Group style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
-            <ActionIcon color="grape" size="lg" radius="lg" variant="filled">
-              <Bus />
-            </ActionIcon>          
-            <Text weight={500}>Közlekedés</Text>
-          </Group>
-          <Group direction="column">
-            <Text>utak</Text>
-            <Text>megállók</Text>
-            <Text>közösségi közlekedés</Text>
-            <Text>biciklik</Text>
-          </Group>
-        </Card>
-        <Card radius="xl" shadow="sm" p="lg">
-          <Group style={{ marginBottom: 5, marginTop: theme.spacing.sm }}>
-            <ActionIcon color="grape" size="lg" radius="lg" variant="filled">
-              <Bus />
-            </ActionIcon>          
-            <Text weight={500}>Közlekedés</Text>
-          </Group>
-          <Group direction="column">
-            <Text>utak</Text>
-            <Text>megállók</Text>
-            <Text>közösségi közlekedés</Text>
-            <Text>biciklik</Text>
-          </Group>
-        </Card>
-        </Group>
+        <Grid>
+          <Grid.Col span={4}>1</Grid.Col>
+          <Grid.Col span={4}>2</Grid.Col>
+          <Grid.Col span={4}>3</Grid.Col>
+        </Grid>
       </Container>
     </AppShell>
   )
