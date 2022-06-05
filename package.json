@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/css": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mantine/core": "^4.2.4",
     "@mantine/hooks": "^4.2.4",
