@@ -60,7 +60,7 @@ const FlipCard = ({
   ...rest
 }) => {
   const handleClick = () => {
-    onClick({ id, imgId })
+    onClick(id)
   }
 
   return (
