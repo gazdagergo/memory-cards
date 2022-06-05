@@ -30,12 +30,13 @@ const GameBoard = ({ initialCards }) => {
     >
       <Container size={1100}>
         <Group>
-          {cards.map(({ id, visible, url }) => (
+          {cards.map(({ id, visible, url, imgId }) => (
             <FlipCard
               key={id}
               visible={visible}
               src={url}
               id={id}
+              imgId={imgId}
               onClick={handleCardClick}
             />
           ))}
