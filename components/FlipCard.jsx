@@ -8,6 +8,13 @@ background-color: transparent;
 width: 160px;
 height: 160px;
 perspective: 1000px;
+cursor: pointer;
+transition: opacity 0.3s;
+
+&:hover {
+  opacity: .85;
+}
+
 
 .flip-card-inner {
   position: relative;
@@ -44,7 +51,13 @@ ${({ flipped }) => flipped ? `
 }
 `
 
-const FlipCard = ({ visible, onClick, id, ...rest }) => {
+const FlipCard = ({
+  id,
+  onClick,
+  src,
+  visible,
+  ...rest
+}) => {
   const handleClick = () => {
     onClick(id)
   }
@@ -54,10 +67,10 @@ const FlipCard = ({ visible, onClick, id, ...rest }) => {
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <Image
-            src="https://images.unsplash.com/photo-1527004013197-933c4bb611b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=720&q=80"
+            src={src}
             width={160}
             height={160}
-            alt="Norway"
+            layout="responsive"
           />
         </div>
         <div className="flip-card-back" />
