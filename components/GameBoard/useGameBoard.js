@@ -7,7 +7,7 @@ import reducer, {
 } from './reducer';
 
 
-const useGameBoard = ({ initialCards }) => {
+const useGameBoard = ({ initialCards, onReady }) => {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     cards: initialCards
@@ -27,6 +27,10 @@ const useGameBoard = ({ initialCards }) => {
       dispatch({ type: HIDE_OTHER_NON_PAIRED, payload: { id } })
     }    
     dispatch({ type: CARD_CLICK, payload: { id, imgId: clickedCardImgId } })
+  }
+
+  if (state.cards.filter(({ visible }) => !visible).length === 0){
+    onReady()
   }
 
   return {
