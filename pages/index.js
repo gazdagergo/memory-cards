@@ -2,10 +2,13 @@ import { nanoid } from 'nanoid/non-secure'
 import axios from 'axios';
 import getShuffledArray from '../functions/getShuffledArray'
 import GameBoard from '../components/GameBoard';
+import Layout from '../components/layout';
 
 const Home = ({ cards: initialCards }) => {
   return (
-    <GameBoard initialCards={initialCards} />
+    <Layout>
+      <GameBoard initialCards={initialCards} onReady={handleReady} />
+    </Layout>
   )
 }
 
