@@ -65,8 +65,19 @@ const FlipCard = ({
     onClick(id)
   }
 
+  const handleKeyDown = ({ code }) => {
+    if (['Enter', 'Space'].includes(code)){
+      onClick(id)
+    }
+  }
+
   return (
-    <FlipCardWrap flipped={!visible} onClick={handleClick} {...rest}>
+    <FlipCardWrap
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      flipped={!visible}
+      onClick={handleClick}
+      {...rest}>
       <div className="flip-card-inner">
         <div className="flip-card-front">
           <Image
