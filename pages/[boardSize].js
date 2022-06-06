@@ -6,8 +6,11 @@ import GameBoard from '../components/GameBoard';
 import Layout from '../components/Layout';
 import { useRef, useEffect, useState } from 'react'
 import Overlay from '../components/Overlay';
+import SizeSelector from '../components/SizeSelector'
 
-const Home = ({ cards: initialCards }) => {
+
+const Home = ({ cards: initialCards, boardSize }) => {
+  console.log({ boardSize, cardsLength: initialCards.length })
   const catSound = useRef(null);
   const [isReady, setIsready] = useState(false)
   const router = useRouter()
@@ -25,8 +28,17 @@ const Home = ({ cards: initialCards }) => {
     router.reload(window.location.pathname)
   }
 
+  const handleSizeChange = ({ target: { value }}) => {
+    router.replace(value)
+  }
+
   return (
-    <Layout>
+    <Layout headerChildren={(
+      <SizeSelector
+        value={boardSize}
+        onChange={handleSizeChange}
+      />
+      )}>
       <GameBoard initialCards={initialCards} onReady={handleReady} />
       {isReady && <Overlay><button onClick={handleRestartClick}>Újrakezdem</button></Overlay>}
     </Layout>
@@ -35,10 +47,14 @@ const Home = ({ cards: initialCards }) => {
 
 export default Home
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ query }) => {
+  let boardSize = parseInt(query.boardSize)
+
+  if (boardSize % 2 !== 0) boardSize = 18
+
   axios.defaults.headers.common['x-api-key'] = process.env.API_KEY
 
-  const { data } = await axios.get('https://api.thecatapi.com/v1/images/search', { params: { limit: 9, size: 'thumb' } } )
+  const { data } = await axios.get('https://api.thecatapi.com/v1/images/search', { params: { limit: boardSize / 2, size: 'thumb' } } )
   
   const cards = data.reduce((acc, { id, url }) => {
     return [
@@ -60,7 +76,8 @@ export const getServerSideProps = async () => {
 
   return {
     props: {
-      cards: getShuffledArray(cards)
+      cards: getShuffledArray(cards),
+      boardSize
     }
   }
 }

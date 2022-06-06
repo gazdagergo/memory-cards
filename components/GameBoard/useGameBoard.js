@@ -1,9 +1,10 @@
-import { useReducer } from 'react';
+import { useReducer, useEffect } from 'react';
 import reducer, {
   CARD_CLICK,
   HIDE_OTHER_NON_PAIRED,
   initialState,
-  MAX_VISIBLE_NON_PAIRED_CARDS
+  MAX_VISIBLE_NON_PAIRED_CARDS,
+  SIZE_CHANGED
 } from './reducer';
 
 
@@ -12,6 +13,10 @@ const useGameBoard = ({ initialCards, onReady }) => {
     ...initialState,
     cards: initialCards
   })
+
+  useEffect(() => {
+    dispatch({ type: SIZE_CHANGED, payload: { initialCards }})
+  }, [initialCards])
 
   const numberOfVisibleUnpaired = state.cards.filter(({ visible, imgId }) => !!visible && !state.pairedImgIds.includes(imgId)).length
 

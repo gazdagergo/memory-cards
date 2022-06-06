@@ -2,6 +2,7 @@
 export const MAX_VISIBLE_NON_PAIRED_CARDS = 2
 export const CARD_CLICK = 'CARD_CLICK'
 export const HIDE_OTHER_NON_PAIRED = 'HIDE_OTHER_NON_PAIRED'
+export const SIZE_CHANGED = 'SIZE_CHANGED'
 
 export const initialState = {
   cards: [],
@@ -35,6 +36,11 @@ const reducer = (state, { type, payload }) => {
         }
         return card
       })
+    }
+
+    case SIZE_CHANGED: return {
+      ...initialState,
+      cards: payload.initialCards
     }
 
     default: return state
