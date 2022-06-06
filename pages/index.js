@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 import getShuffledArray from '../functions/getShuffledArray'
 import GameBoard from '../components/GameBoard';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import { useRef, useEffect, useState } from 'react'
 import styled from '@emotion/styled';
 
