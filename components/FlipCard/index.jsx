@@ -85,6 +85,7 @@ const FlipCard = ({
             width={160}
             height={160}
             layout="responsive"
+            draggable={false}
           />
         </div>
         <div className="flip-card-back" />
