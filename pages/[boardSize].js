@@ -4,28 +4,14 @@ import axios from 'axios';
 import getShuffledArray from '../functions/getShuffledArray'
 import GameBoard from '../components/GameBoard';
 import Layout from '../components/Layout';
-import { useRef, useEffect, useState } from 'react'
-import Overlay from '../components/Overlay';
 import SizeSelector from '../components/SizeSelector'
 
 
 const Home = ({ cards: initialCards, boardSize }) => {
-  console.log({ boardSize, cardsLength: initialCards.length })
-  const catSound = useRef(null);
-  const [isReady, setIsready] = useState(false)
   const router = useRouter()
 
-  useEffect(() => {
-    catSound.current = new Audio('/meow.mp3')
-  }, [])
-
-  const handleReady = () => {
-    catSound.current.play()
-    setIsready(true)
-  }
-
   const handleRestartClick = () => {
-    router.reload(window.location.pathname)
+    router.replace(router.asPath)
   }
 
   const handleSizeChange = ({ target: { value }}) => {
@@ -39,8 +25,9 @@ const Home = ({ cards: initialCards, boardSize }) => {
         onChange={handleSizeChange}
       />
       )}>
-      <GameBoard initialCards={initialCards} onReady={handleReady} />
-      {isReady && <Overlay><button onClick={handleRestartClick}>Újrakezdem</button></Overlay>}
+      <GameBoard
+        initialCards={initialCards}
+        onRestart={handleRestartClick} />
     </Layout>
   )
 }

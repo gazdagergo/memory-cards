@@ -34,13 +34,12 @@ const useGameBoard = ({ initialCards, onReady }) => {
     dispatch({ type: CARD_CLICK, payload: { id, imgId: clickedCardImgId } })
   }
 
-  if (state.cards.filter(({ visible }) => !visible).length === 0){
-    onReady()
-  }
+  const isReady = state.cards.length > 0 && state.cards.length / 2 === state.pairedImgIds.length
 
   return {
     cards: state.cards,
     handleCardClick,
+    isReady
   }
 }
 
