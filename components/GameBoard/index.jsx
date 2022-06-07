@@ -4,12 +4,23 @@ import FlipCard from '../FlipCard';
 import useGameBoard from './useGameBoard';
 import Overlay from '../Overlay';
 import { useEffect, useRef } from 'react';
+import styled from '@emotion/styled';
+
+const Result = styled.div`
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: lightgray;
+  padding: 18px;
+`
 
 const GameBoard = ({ initialCards, onReady, onRestart }) => {
   const {
     cards,
     handleCardClick,
-    isReady
+    isReady,
+    nrOfPairs,
+    nrOfTurns
   } = useGameBoard({ initialCards, onReady })
 
   const catSound = useRef(null)
@@ -38,7 +49,15 @@ const GameBoard = ({ initialCards, onReady, onRestart }) => {
           />
         ))}
       </Group>
-      {isReady && <Overlay><button onClick={onRestart}>Újrakezdem</button></Overlay>}    
+      <Result>{nrOfPairs} / {nrOfTurns}</Result>
+      {isReady && (
+        <Overlay>
+          <h3>Gratulálunk!</h3>
+          <p>{nrOfTurns} forgatásból megtaláltál {nrOfPairs} párt.</p>
+          <br />
+          <button onClick={onRestart}>Újrakezdem</button>
+        </Overlay>
+      )}    
     </>
   )
 }

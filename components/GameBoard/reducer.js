@@ -7,6 +7,7 @@ export const SIZE_CHANGED = 'SIZE_CHANGED'
 export const initialState = {
   cards: [],
   pairedImgIds: [],
+  nrOfTurns: 0
 }
 
 const reducer = (state, { type, payload }) => {
@@ -22,7 +23,8 @@ const reducer = (state, { type, payload }) => {
       pairedImgIds: [
         ...state.pairedImgIds,
         ...(state.cards.find(({ visible, imgId }) => visible && !state.pairedImgIds.includes(imgId))?.imgId === payload.imgId ? [payload.imgId] : [])
-      ]
+      ],
+      nrOfTurns: state.nrOfTurns + 1
     }
 
     case HIDE_OTHER_NON_PAIRED: return {

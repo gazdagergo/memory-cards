@@ -39,6 +39,8 @@ const useGameBoard = ({ initialCards, onReady }) => {
   return {
     cards: state.cards,
     handleCardClick,
+    nrOfPairs: state.pairedImgIds.length,
+    nrOfTurns: state.nrOfTurns,
     isReady
   }
 }

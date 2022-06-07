@@ -39,9 +39,23 @@ const Overlay = styled.div`
   bottom: 0;
   left: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   animation: ${fadeIn} 2s forwards;
+
+  h3 {
+    font-size: 24px;
+    color: #3388b9;
+    margin: 0;
+    text-shadow: 0 0 8px white;
+  }
+
+  p {
+    font-size: 18px;
+    text-shadow: 0 0 8px white;
+
+  }
 
   button {
     font-size: 28px;
